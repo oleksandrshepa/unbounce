@@ -1,0 +1,77 @@
+Manual:
+
+# You need to add a class to section as "faq-section" where the FAQ block will be.
+
+# Add custom HTML block and add class "faq-content" to that block;
+
+
+# Use this HTML as a layout.
+<div class="faq-drawer">
+  <input class="faq-drawer__trigger" id="faq-drawer" type="checkbox" /><label class="faq-drawer__title" style="border-top:0px" for="faq-drawer">How are your courses different from your competitors’? </label>
+  <div class="faq-drawer__content-wrapper">
+    <div class="faq-drawer__content">
+      <p>
+       Our courses are completely customized to ensure a deep learning experience. In addition, we don’t teach grammar, as research shows that teaching grammar doesn’t result in better-written documents. Instead, we focus on readability studies; that is, what research and science tell us about how readers read.
+      </p>
+    </div>
+  </div>
+</div>
+    
+    ..........
+    
+  <div class="faq-drawer">
+    <input class="faq-drawer__trigger" id="faq-drawer-2" type="checkbox" /><label class="faq-drawer__title" for="faq-drawer-2">What tools do you use to ensure a good learning experience?</label>
+    <div class="faq-drawer__content-wrapper">
+      <div class="faq-drawer__content">
+        <p>
+          Well, we ensure that participants have fun because we believe that if you’re not having fun, you’re probably not learning. We also know that most people, when they hear “we’re having a writing course,” think “this is going to be boring and take me away from my real job.” 
+        </p>
+        <p>To counter any negative preconceptions, we use</p>
+        <ul>
+          <li>Socratic discussion to ensure that everyone’s voice is heard</li>
+          <li>Exercises, examples, and breakouts that focus on the application of concepts</li>
+          <li>Generic examples to give your team opportunities to apply the concepts in a non-threatening way</li>
+          <li>Micro-learning followed by application</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+# Add this Javascript 
+
+<script>	
+$(function() {
+	var faqContentHeightOriginal = $('.faq-content').height();
+	var faqSectionHeightOriginal = $('.faq-section').height();
+	
+	
+	$(document).on('click', '.faq-drawer__title', function(e){		
+		setTimeout(function() {
+          setFaqSectionHeight();
+          setFaqDependentsOffset();
+        }, 10);
+	});	
+	
+	function setFaqSectionHeight(){		
+		
+		var sectionPaddingsHeight = 250;
+		var faqContentHeightCurrent = $('.faq-content').height();
+		var fullFaqSectionHeight = faqContentHeightCurrent + sectionPaddingsHeight;
+		
+		$('.faq-section').height(fullFaqSectionHeight);
+		$('.faq-section .lp-pom-block-content').height(fullFaqSectionHeight);		
+		
+	}
+	
+	function setFaqDependentsOffset(){
+				
+		var faqSectionHeightCurrent = $('.faq-section').height();
+		
+		var faqOffset = faqSectionHeightCurrent - faqSectionHeightOriginal;
+		$(".js-faq-dependent-offset").css("margin-top", faqOffset);		
+				
+	}
+});
+</script>
+
